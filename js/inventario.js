@@ -38,3 +38,27 @@ mostrarTitulo("1. ARREGLO DE PRODUCTOS");
 console.log("Cantidad de productos:", productos.length);
 console.table(productos);
 
+
+// 2. FOREACH CON FUNCIÓN TRADICIONAL
+
+mostrarTitulo("2. FOREACH CON FUNCIÓN TRADICIONAL");
+
+const retornoForEachTradicional = productos.forEach(function (producto) {
+  console.log(`${producto.id}. ${producto.nombre} - Stock: ${producto.stock}`);
+});
+
+console.log("Valor devuelto por forEach tradicional:", retornoForEachTradicional);
+
+// 3. FOREACH CON FUNCIÓN FLECHA
+
+mostrarTitulo("3. FOREACH CON FUNCIÓN FLECHA");
+
+const retornoForEachFlecha = productos.forEach((producto) => {
+  console.log(`${producto.id}. ${producto.nombre} - $${producto.precio}`);
+});
+
+console.log("Valor devuelto por forEach flecha:", retornoForEachFlecha);
+console.log("Reflexión: forEach devuelve undefined porque solo recorre el arreglo y ejecuta una acción.");
+
+
+
