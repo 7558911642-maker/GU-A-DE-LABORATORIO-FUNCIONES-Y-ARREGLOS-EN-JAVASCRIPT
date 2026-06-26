@@ -93,5 +93,104 @@ console.log(
 );
 console.log("Reflexión: filter crea un nuevo arreglo y no modifica el arreglo original.");
 
+// 6. FIND: BÚSQUEDA DE UN PRODUCTO POR ID
+
+mostrarTitulo("6. FIND - BÚSQUEDA POR ID");
+
+const idBuscado = 5;
+const productoEncontrado = productos.find(
+  (producto) => producto.id === idBuscado
+);
+
+console.log("ID buscado:", idBuscado);
+console.log("Producto encontrado:", productoEncontrado);
+console.log("Reflexión: si dos productos tuvieran el mismo ID, find devolvería solo la primera coincidencia.");
 
 
+// 7. REDUCE: VALOR MONETARIO TOTAL Y TABLA DE TRAZA
+
+mostrarTitulo("7. REDUCE - VALOR TOTAL DEL INVENTARIO");
+
+const tablaTraza = [];
+
+const valorTotalInventario = productos.reduce(
+  (acumulador, producto, indice) => {
+    const subtotal = producto.precio * producto.stock;
+    const resultadoParcial = acumulador + subtotal;
+
+    tablaTraza.push({
+      iteracion: indice + 1,
+      producto: producto.nombre,
+      acumuladorAnterior: acumulador,
+      precioActual: producto.precio,
+      stockActual: producto.stock,
+      subtotal,
+      resultadoParcial
+    });
+
+    return resultadoParcial;
+  },
+  0
+);
+
+console.table(tablaTraza);
+console.log("Valor monetario total del inventario: $" + valorTotalInventario);
+console.log("Reflexión: reduce acumula el subtotal precio por stock de cada producto hasta obtener un único valor.");
+
+// 8. SOME: PRODUCTOS CON PRECIO MAYOR A 500
+
+mostrarTitulo("8. SOME - ¿EXISTE UN PRODUCTO MAYOR A $500?");
+
+const existeProductoMayorA500 = productos.some(
+  (producto) => producto.precio > 500
+);
+
+const productosMayoresA500 = productos.filter(
+  (producto) => producto.precio > 500
+);
+
+console.log("Resultado de some:", existeProductoMayorA500);
+console.log("Tipo de dato devuelto por some:", typeof existeProductoMayorA500);
+console.log("Resultado de filter para comparar:");
+console.table(productosMayoresA500);
+console.log("Reflexión: some devuelve true o false; filter devuelve un arreglo con todas las coincidencias.");
+
+
+
+// 9. CONTEXTO THIS CON FUNCIÓN FLECHA
+
+mostrarTitulo("9. THIS EN FUNCIÓN FLECHA Y FUNCIÓN TRADICIONAL");
+
+const productoConFlecha = {
+  nombre: "Laptop Lenovo",
+  mostrarNombre: () => {
+    console.log("Resultado con función flecha:", this?.nombre);
+  }
+};
+
+const productoConFuncionTradicional = {
+  nombre: "Laptop Lenovo",
+  mostrarNombre: function () {
+    console.log("Resultado con función tradicional:", this.nombre);
+  }
+};
+
+productoConFlecha.mostrarNombre();
+productoConFuncionTradicional.mostrarNombre();
+
+console.log(
+  "Reflexión: la función flecha no crea su propio this; usa el this del ámbito exterior. " +
+  "La función tradicional sí recibe como this al objeto que ejecuta el método."
+);
+
+// 10. RESUMEN FINAL
+
+mostrarTitulo("10. FINAL DEL LABORATORIO");
+
+console.log("Productos registrados:", productos.length);
+console.log("Etiquetas creadas con map:", etiquetas.length);
+console.log("Productos filtrados:", productosFiltrados.length);
+console.log("Producto encontrado:", productoEncontrado?.nombre ?? "No encontrado");
+console.log("Valor total del inventario: $" + valorTotalInventario);
+console.log("¿Hay productos mayores a $500?:", existeProductoMayorA500);
+console.log("Laboratorio ejecutado correctamente.");
