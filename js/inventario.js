@@ -60,5 +60,38 @@ const retornoForEachFlecha = productos.forEach((producto) => {
 console.log("Valor devuelto por forEach flecha:", retornoForEachFlecha);
 console.log("Reflexión: forEach devuelve undefined porque solo recorre el arreglo y ejecuta una acción.");
 
+// 4. MAP: CREACIÓN DE UNA NUEVA COLECCIÓN DE ETIQUETAS
+
+mostrarTitulo("4. MAP - ETIQUETAS DE PRODUCTOS");
+
+const etiquetas = productos.map(
+  (producto) => `PRODUCTO: ${producto.nombre} - $${producto.precio}`
+);
+
+console.table(etiquetas);
+console.log("Cantidad de etiquetas creadas:", etiquetas.length);
+console.log("Reflexión: map es correcto porque se necesita un nuevo arreglo transformado.");
+
+
+// 5. FILTER: CATEGORÍA ESPECÍFICA Y STOCK MAYOR A CERO
+
+mostrarTitulo("5. FILTER - PRODUCTOS DE TECNOLOGÍA CON STOCK");
+
+const copiaAntesDelFilter = JSON.stringify(productos);
+const categoriaBuscada = "Tecnología";
+
+const productosFiltrados = productos.filter(
+  (producto) =>
+    producto.categoria === categoriaBuscada && producto.stock > 0
+);
+
+console.table(productosFiltrados);
+console.log("Cantidad de productos filtrados:", productosFiltrados.length);
+console.log(
+  "¿El arreglo original fue modificado?",
+  JSON.stringify(productos) === copiaAntesDelFilter ? "No" : "Sí"
+);
+console.log("Reflexión: filter crea un nuevo arreglo y no modifica el arreglo original.");
+
 
 
