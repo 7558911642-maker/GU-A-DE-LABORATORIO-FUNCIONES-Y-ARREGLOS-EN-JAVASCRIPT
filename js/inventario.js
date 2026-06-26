@@ -31,7 +31,6 @@ function mostrarTitulo(titulo) {
   
 }
 
-
 // 1. VERIFICACIÓN DEL ARREGLO DE 20 PRODUCTOS
 
 mostrarTitulo("1. ARREGLO DE PRODUCTOS");
@@ -194,3 +193,5 @@ console.log("Producto encontrado:", productoEncontrado?.nombre ?? "No encontrado
 console.log("Valor total del inventario: $" + valorTotalInventario);
 console.log("¿Hay productos mayores a $500?:", existeProductoMayorA500);
 console.log("Laboratorio ejecutado correctamente.");
+
+
